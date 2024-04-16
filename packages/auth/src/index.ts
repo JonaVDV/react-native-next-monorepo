@@ -19,4 +19,4 @@ import { login } from "./login"
 import { logout } from "./logout"
 import type { Session, User} from 'lucia'
 
-export { validateRequest, signup, login, logout, type Session, type User}
+export { validateRequest as auth, signup, login, logout, type Session, type User}
