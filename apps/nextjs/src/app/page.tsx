@@ -8,8 +8,6 @@ import {
   PostList,
 } from "./_components/posts";
 
-export const runtime = "edge";
-
 export default function HomePage() {
   // You can await this here if you don't want to show Suspense fallback below
   const posts = api.post.all();
@@ -22,20 +20,7 @@ export default function HomePage() {
         </h1>
         <AuthShowcase />
 
-        <CreatePostForm />
-        <div className="w-full max-w-2xl overflow-y-scroll">
-          <Suspense
-            fallback={
-              <div className="flex w-full flex-col gap-4">
-                <PostCardSkeleton />
-                <PostCardSkeleton />
-                <PostCardSkeleton />
-              </div>
-            }
-          >
-            <PostList posts={posts} />
-          </Suspense>
-        </div>
+        
       </div>
     </main>
   );

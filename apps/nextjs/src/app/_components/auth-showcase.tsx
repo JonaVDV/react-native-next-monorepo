@@ -1,42 +1,56 @@
-import { auth, signIn, signOut } from "@acme/auth";
-import { Button } from "@acme/ui/button";
+import {validateRequest } from "@acme/auth";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormMessage,
+  useForm,
+} from "@acme/ui/form";
+import { Input } from "@acme/ui/input";
+import { authValidator } from "@acme/validators";
+
 
 export async function AuthShowcase() {
-  const session = await auth();
+  const { session, user } = await validateRequest();
+  const form = useForm({
+    schema: authValidator,
+  });
 
   if (!session) {
     return (
-      <form>
-        <Button
-          size="lg"
-          formAction={async () => {
-            "use server";
-            await signIn("discord");
-          }}
-        >
-          Sign in with Discord
-        </Button>
-      </form>
+      <div>
+        <Form {...form}>
+          <form action="">
+            <FormField
+              name="username"
+              control={form.control}
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Input {...field} placeholder="Title" />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              name="password"
+              control={form.control}
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Input {...field} placeholder="Title" />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </form>
+        </Form>
+      </div>
     );
   }
 
-  return (
-    <div className="flex flex-col items-center justify-center gap-4">
-      <p className="text-center text-2xl">
-        <span>Logged in as {session.user.name}</span>
-      </p>
-
-      <form>
-        <Button
-          size="lg"
-          formAction={async () => {
-            "use server";
-            await signOut();
-          }}
-        >
-          Sign out
-        </Button>
-      </form>
-    </div>
-  );
+  return <div></div>;
 }

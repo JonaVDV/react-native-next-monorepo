@@ -28,5 +28,8 @@
     "turbo": "^1.13.2",
     "typescript": "^5.4.5"
   },
-  "prettier": "@acme/prettier-config"
+  "prettier": "@acme/prettier-config",
+  "prisma": {
+    "schema": "packages/db/prisma/schema.prisma"
+  }
 }
