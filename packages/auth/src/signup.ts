@@ -10,7 +10,7 @@ import { redirect } from "next/navigation";
 
 
 export async function signup(
-  _: any,
+  _: unknown,
   formData: FormData,
 ): Promise<typeof ActionResult> {
   "use server";
