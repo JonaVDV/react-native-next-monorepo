@@ -1,5 +1,4 @@
 "use client";
-import {signup, auth } from "@acme/auth";
 import { Button } from "@acme/ui/button";
 import {
   Form,
@@ -68,7 +67,9 @@ export function CreateSignupForm() {
   return (
     <div>
       <Form {...form}>
-        <form className="grid gap-2" action={signup}>
+        <form className="grid gap-2" onSubmit={form.handleSubmit((data) => {
+          console.log(data);
+        })}>
           <FormField
             name="username"
             control={form.control}
